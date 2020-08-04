@@ -100,22 +100,37 @@ document.addEventListener('DOMContentLoaded',()=>{
             console.log(squares); 
             //squares += [index+10];
         })
-    }
-      
-    // setTimeout(newDraw,6000) ;
+    }    
+    
 
+
+    
+    
+    window.addEventListener('keydown', (e) => {
+        if(e.keyCode === 13){// Enter to start game
+            draw();
+            timerId = setInterval(moveDownAuto, 500);
+        }
+
+        //match key code all the arrows. 
+
+    })    
+    
     function moveDownAuto(){
     undraw();
     currentPosition += 10;
     newDraw();
     }
+moveDownAuto(); // motionable the tetromino game.
+
+
 
     // clearInterval(timerId);
-    draw();
-    timerId = setInterval(moveDownAuto, 500);
+    // draw();
+    
 
 
-    moveDownAuto(); // motionable the tetromino game. 
+     
 
 
 
