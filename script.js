@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
     //==============================================================================================================================================
+    //==============================================================================================================================================
     const designTetrominoes = [
         [0,0],[0,1],[0,2],
         [1,0],[1,1],[1,2],
@@ -29,6 +30,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     // need to figuare it out how to covert into shape Tetromino [01, 11, 21, 02] probably RegExp???
 
     //==============================================================================================================================================
+    //==============================================================================================================================================
+
+
+
 
     const lTetromino = [
         [1, width+1, width*2+1, 2],
@@ -65,7 +70,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     let currentPosition = 4;
     let currentRotation = 0;
     let current = theTetrominoes[random][currentRotation];
-
     // draw the first rotation in the first tetromino
     function draw(){
         current.forEach(index => {
@@ -95,7 +99,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     // newDraw create new tetromino shape    
     
     // timerId = setInterval(moveDownAuto, 250); 
-window.addEventListener('keyup', control);
+    window.addEventListener('keyup', control);
     window.addEventListener('keydown', (e) => {
         if(e.keyCode === 13){// Enter to start game
             draw();
@@ -130,7 +134,7 @@ window.addEventListener('keyup', control);
     function moveLeft(){
       undraw();
       const isAtLeftEdge = current.some(index=> (currentPosition + index) % width === 0); // remainder width
-      if(!isAtLeftEdge) currentPosition -=1;
+      if(!isAtLeftEdge) currentPosition -=1; // the grid elements set from left to right so move to left side by negative one. 
       if(current.some(index=> squares[currentPosition + index].classList.contains('taken'))){
         currentPosition +=1;
       }
@@ -139,13 +143,28 @@ window.addEventListener('keyup', control);
 
     function moveRight(){
       undraw();
-      const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1);
-      if(!isAtRightEdge) currentPosition +=1;
+      const isAtRightEdge = current.some(index => (currentPosition + index) % width === width -1); 
+      if(!isAtRightEdge) currentPosition +=1; // the grid elements set from left to right so move to right side by add  one 
       if(current.some(index=> squares[currentPosition + index].classList.contains('taken'))){
           currentPosition -=1;
       }
       draw();
     }
+
+    function rotate(){
+        undraw();
+        currentRotation++;
+        if(currentRotation === current.length){
+            currentRotation = 0; 
+        }
+        current = theTetrominoes[random][currentRotation]; 
+        draw();
+    }
+
+
+
+
+
 
     //assign functions to keyCodes
     function control(e){
@@ -155,10 +174,16 @@ window.addEventListener('keyup', control);
       else if(e.keyCode === 39){
           moveRight();
       }
+      else if(e.keyCode === 40){
+        //   moveDown();
+      }
+      else if(e.keyCode === 38){
+          rotate();
+      }
     }
 
-    
+
 
 
 } )
-// 55:52
+// 1:05:39 
