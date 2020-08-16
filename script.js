@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded',()=>{
     const grid = document.querySelector('.grid');
     let squares = Array.from(document.querySelectorAll('.grid div'));
-    const displayScore = document.querySelector('#score');
+    const scoreDisplay = document.querySelector('#score');
     const startGame = document.querySelector('#start-game');
     const width = 10;
     let timerId;
     let nextRandom = 0;
+    let score = 0;
 
 
     //==============================================================================================================================================
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             currentPosition = 4; // reset grid number
             draw();
             displayShape();
-            // addScore();
+            addScore();
             // gameOver();
         }
     }
@@ -195,14 +196,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     startGame.addEventListener('click', ()=>{
         if(timerId){ // variable declared no value (undefined) 
             console.log("variable declared no value");
-            clearInterval(timerId);
+            clearInterval(timerId); 
             console.log(timerId);
-
             timerId = null; // Undefined means a variable has been declared but has no value: Null is an assignment:
         }else{
             draw();
             timerId = setInterval(moveDown, 1000);
-            console.log(timerId);
+            console.log(timerId); // why output as 8? even
             nextRandom = Math.floor(Math.random() * theTetrominoes.length);
             displayShape();
         }
@@ -215,6 +215,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(row.every(index => squares[index].classList.contains('taken'))){
                 score += 10;
                 scoreDisplay.innerHTML = score;
+                row.forEach(index=>{
+                    squares[index].classList.remove('taken');
+                })
+                const squareRemoved = squares.splice(i, 10);
+                console.log(squareRemoved);
             }
         }
     }
