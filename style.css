@@ -3,9 +3,11 @@ body {
     margin: 0;
 }
 .container{
+    margin-top:10px;
     display:flex;
+    /* align-items: center; */
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
 }
 
 .start{
@@ -30,3 +32,17 @@ body {
     background-color: blue;
 }
 
+.mini-grid{
+    background-color: green;
+    border: 1px solid black;
+    width:80px;
+    height:80px;
+    display:flex;
+    flex-wrap:wrap;
+
+}
+
+.mini-grid div{
+    width:20px;
+    height:20px;
+}
