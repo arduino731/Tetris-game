@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let timerId;
     let nextRandom = 0;
     let score = 0;
-
+    const speedPace = 400; // how fast tetromio move down
 
     //==============================================================================================================================================
     //==============================================================================================================================================
@@ -124,14 +124,14 @@ document.addEventListener('DOMContentLoaded',()=>{
             // start a new tetromino falling
             random = nextRandom;
             nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-            console.log('next Random :' + nextRandom);
-            console.log('random :'+ random);
+            // console.log('next Random :' + nextRandom);
+            // console.log('random :'+ random);
             current = theTetrominoes[random][currentRotation];
-            currentPosition = 4; // reset grid number
+            currentPosition = 4; // reset grid number and repeat start at the middle top new tetromino
             draw();
             displayShape();
             addScore();
-            // gameOver();
+            gameOver();
         }
     }
 
@@ -195,14 +195,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     // add functionality to the button
     startGame.addEventListener('click', ()=>{
         if(timerId){ // variable declared no value (undefined) 
-            console.log("variable declared no value");
+            // console.log("variable declared no value");
             clearInterval(timerId); 
-            console.log(timerId);
+            // console.log(timerId);
             timerId = null; // Undefined means a variable has been declared but has no value: Null is an assignment:
         }else{
             draw();
-            timerId = setInterval(moveDown, 1000);
-            console.log(timerId); // why output as 8? even
+            timerId = setInterval(moveDown, speedPace);
+            // console.log(timerId); // not sure why output as 8? 
             nextRandom = Math.floor(Math.random() * theTetrominoes.length);
             displayShape();
         }
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 score += 10;
                 scoreDisplay.innerHTML = score;
 
-                row.forEach(index=>{ // remove completely the tetromino in a row removed only 10 by the contains "taken" 
+                row.forEach(index=>{ // remove completely the tetromino in a row removed only 10
                     squares[index].classList.remove('taken');
                     squares[index].classList.remove('tetromino');
 
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 // console.log(squares); // 210 
                 
                 squares.forEach(cell => {
-                    console.log(cell);
+                    // console.log(cell);
                     grid.appendChild(cell)
                 });
             }
@@ -237,5 +237,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     
 } )
 
-
-// 1:29:27
+function gameOver(){
+    if(current.some(index=> squares[currentPosition + index].classList.contains('taken'))) {
+        scoreDisplay.innerHTML = 'END';
+        clearInterval(timerId);
+    }
+}
