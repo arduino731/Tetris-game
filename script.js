@@ -209,17 +209,28 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
 
     function addScore(){
-        for(let i = 0; i < 199; i += width){
-            const row = [i, i+1, i+2,i+3,i+4,i+5,i+6,i+7,i+8,i+9]
-
-            if(row.every(index => squares[index].classList.contains('taken'))){
+        for(let i = 0; i < 199; i += width){ // whole the grid 
+            const row = [i, i+1, i+2,i+3,i+4,i+5,i+6,i+7,i+8,i+9]; // each row contain 10 boxes and create arrays 
+            if(row.every(index => squares[index].classList.contains('taken'))){ // true when it hits the taken class
                 score += 10;
                 scoreDisplay.innerHTML = score;
-                row.forEach(index=>{
+
+                row.forEach(index=>{ // remove completely the tetromino in a row removed only 10 by the contains "taken" 
                     squares[index].classList.remove('taken');
+                    squares[index].classList.remove('tetromino');
+
                 })
-                const squareRemoved = squares.splice(i, 10);
-                console.log(squareRemoved);
+
+                const squareRemoved = squares.splice(i, 10); // 10 is remove each row   
+                // console.log(squareRemoved); // 10
+                // console.log(squares); // 200
+                squares = squareRemoved.concat(squares);// return new array
+                // console.log(squares); // 210 
+                
+                squares.forEach(cell => {
+                    console.log(cell);
+                    grid.appendChild(cell)
+                });
             }
         }
     }
@@ -227,4 +238,4 @@ document.addEventListener('DOMContentLoaded',()=>{
 } )
 
 
-// 1:26:14
+// 1:29:27
