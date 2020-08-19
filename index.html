@@ -6,16 +6,22 @@
     <title>Tetris</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <h1 class="welcome-tetris-game animate">Tetris Game</h1>
+    <div class="title">
+        <h1 class="center welcome-tetris-game animate">Tetris Game</h1>
+    </div>
+
+    <div class="center">
+        <div class="score score-display-color" ><span class="</span>Score: <span id="score">0</span></div>
+    </div>
     
     <div class="container">    
-        <div class="score">
-            <div id="score">Score: <span>0</span></div>
-            <button class="start" id="start-game">Start Game</button>
-        </div>
+            
+        <button class="start" id="start-game">Start Game</button>
+
         <div class="grid">    
             <div class="whatever"></div> <!--class whatever help to idendifty appendChild method after score function-->
             <div></div>

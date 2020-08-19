@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const grid = document.querySelector('.grid');
     let squares = Array.from(document.querySelectorAll('.grid div'));
     const scoreDisplay = document.querySelector('#score');
+    const scoreDisplayColor = document.querySelector('.score');
     const startGame = document.querySelector('#start-game');
     const width = 10;
     let timerId;
@@ -226,7 +227,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 scoreDisplay.innerHTML = score;
 
                 row.forEach(index=>{ // remove completely the tetromino in a row removed only 10
-                    squares[index].classList.add('animate__animated','animate__zoomOut');
+                    // squares[index].classList.add('animate__animated','animate__zoomOut');
                     squares[index].classList.remove('taken');
                     squares[index].classList.remove('tetromino');
                     squares[index].style.backgroundColor = '';
@@ -248,8 +249,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     
     function gameOver(){
         if(current.some(index=> squares[currentPosition + index].classList.contains('taken'))) {
-            scoreDisplay.innerHTML = 'END';
+            scoreDisplay.innerHTML = 'Game Over';
             clearInterval(timerId);
+            
+            scoreDisplayColor.classList.remove('score');
+            scoreDisplayColor.classList.add('animate2');
         }
     }
 

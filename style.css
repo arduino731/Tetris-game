@@ -3,6 +3,29 @@ body {
     margin: 0;
     background-color:#fbc531 ;
 }
+.title{
+    color: #636e72;
+}
+.center{
+    display:flex;
+    justify-content: center;
+}
+
+.welcome-tetris-game{
+    font-family: 'Bangers', cursive;
+    font-size: 5rem;
+}
+
+.score{
+    font-size: 2rem;
+    color: red;
+    background-color: beige;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    border: 1px solid;
+    margin-bottom: 10px;
+}
+
 .container{
     margin-top:10px;
     display:flex;
@@ -23,6 +46,7 @@ body {
     background-color: #2f3640;
     display: flex;
     flex-wrap: wrap;
+    border-radius:5px;
 }
 
 .grid div {
@@ -51,11 +75,18 @@ body {
     height:20px;
 }
 
-.animate{
+.animate2{
     animation-name:pulse;
     animation-duration: 2s;
     animation-timing-function:ease-in-out;
-    animation-iteration-count: 1;
+    animation-iteration-count: 2;
+    background-color:black;
+    font-size: 2rem;
+    color: red;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+    border: 1px solid;
+    margin-bottom: 10px;
 }
 
 @keyframes pulse {
