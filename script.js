@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let squares = Array.from(document.querySelectorAll('.grid div'));
     const scoreDisplay1 = document.querySelector('#score1');
     const scoreDisplay2 = document.querySelector('#score2')
-    const scoreDisplayColor = document.querySelector('.score');
+    const scoreDisplayColor = document.querySelector('.score-display-color');
     const startGame = document.querySelector('#start-game');
     const width = 10;
     let timerId;
@@ -228,18 +228,17 @@ document.addEventListener('DOMContentLoaded',()=>{
                 score += 10;
                 scoreDisplay2.innerHTML = score;
                 row.forEach(index=>{ // remove completely the tetromino in a row removed only 10
-                    // squares[index].classList.add('animate__animated','animate__zoomOut');
                     squares[index].classList.remove('taken');
                     squares[index].classList.remove('tetromino');
                     squares[index].style.backgroundColor = '';
                 }) 
-             
+                
                 const squareRemoved = squares.splice(i, 10); // 10 is remove each row   
                 // console.log(squareRemoved); // 10
                 // console.log(squares); // 200
                 squares = squareRemoved.concat(squares);// return new array
                 // console.log(squares); // 210 
-
+                
                 squares.forEach(cell => {
                     // console.log(cell);
                     grid.appendChild(cell)
@@ -255,7 +254,8 @@ document.addEventListener('DOMContentLoaded',()=>{
             clearInterval(timerId);
             
             scoreDisplayColor.classList.remove('score');
-            scoreDisplayColor.classList.add('animate2');
+            // scoreDisplayColor.classList.add('animate2');
+            scoreDisplayColor.classList.add('animate__animated','animate__flash');
         }
     }
 

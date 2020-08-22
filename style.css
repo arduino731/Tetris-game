@@ -16,7 +16,7 @@ body {
     font-size: 5rem;
 }
 
-.score{
+.score-display-color{
     font-size: 2rem;
     color: red;
     background-color: beige;
@@ -92,8 +92,10 @@ body {
 @keyframes pulse {
   0% {
     opacity: 0;
+    background-color:black;
   }
   100% {
     opacity: 1;
+    background-color:yellow;
   }
 }
