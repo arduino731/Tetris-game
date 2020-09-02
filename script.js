@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const scoreDisplay2 = document.querySelector('#score2')
     const scoreDisplayColor = document.querySelector('.score-display-color');
     const startGame = document.querySelector('#start-game');
+    const audio = document.getElementById('audio');
+    var source = document.getElementById('audioSource');
     const width = 10;
     let timerId;
     let nextRandom = 0;
@@ -206,12 +208,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     // add functionality to the button
     startGame.addEventListener('click', ()=>{
         if(timerId){ // variable declared no value (undefined) 
+            startGame.innerHTML = "Start Game";
             // console.log("variable declared no value");
             clearInterval(timerId); 
             // console.log(timerId);
             timerId = null; // Undefined means a variable has been declared but has no value: Null is an assignment:
         }else{
             draw();
+            startGame.innerHTML = 'Pause';
             timerId = setInterval(moveDown, speedPace);
             // console.log(timerId); // not sure why output as 8? 
             nextRandom = Math.floor(Math.random() * theTetrominoes.length);
@@ -255,7 +259,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             
             scoreDisplayColor.classList.remove('score');
             // scoreDisplayColor.classList.add('animate2');
-            scoreDisplayColor.classList.add('animate__animated','animate__flash');
+            scoreDisplayColor.classList.add('animate__animated','animate__bounceIn');
+            audio.load();
+            audio.play();
         }
     }
 
